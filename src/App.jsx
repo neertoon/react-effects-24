@@ -15,6 +15,7 @@ function App() {
   navigator.geolocation.getCurrentPosition((object) => {
     console.log('To mamy');
     const sortedPlaces = sortPlacesByDistance(AVAILABLE_PLACES, object.coords.latitude, object.coords.longitude);
+    console.log(sortedPlaces);
   });
 
   function handleStartRemovePlace(id) {
