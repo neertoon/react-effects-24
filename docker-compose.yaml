@@ -1,0 +1,14 @@
+# docker-compose.yml
+version: "3.8"
+services:
+  front-end:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: react-effects-24
+    working_dir: /usr/src/app
+    volumes:
+      - ./:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - 5173:5173
