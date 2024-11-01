@@ -12,10 +12,13 @@ function App() {
   const selectedPlace = useRef();
   const [pickedPlaces, setPickedPlaces] = useState([]);
 
+  const [availablePlaces, setAvailablePlaces] = useState([])
+
   navigator.geolocation.getCurrentPosition((object) => {
     console.log('To mamy');
     const sortedPlaces = sortPlacesByDistance(AVAILABLE_PLACES, object.coords.latitude, object.coords.longitude);
     console.log(sortedPlaces);
+    setAvailablePlaces(sortedPlaces);
   });
 
   function handleStartRemovePlace(id) {
@@ -70,7 +73,7 @@ function App() {
         />
         <Places
           title="Available Places"
-          places={AVAILABLE_PLACES}
+          places={availablePlaces}
           onSelectPlace={handleSelectPlace}
         />
       </main>
