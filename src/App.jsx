@@ -7,10 +7,13 @@ import DeleteConfirmation from './components/DeleteConfirmation.jsx';
 import logoImg from './assets/logo.png';
 import {sortPlacesByDistance} from "./loc.js";
 
+let storedIds = JSON.parse(localStorage.getItem('selectedPlaces')) || [];
+const storedPlaces = storedIds.map((id => AVAILABLE_PLACES.find((place) => place.id === id)));
+
 function App() {
   const modal = useRef();
   const selectedPlace = useRef();
-  const [pickedPlaces, setPickedPlaces] = useState([]);
+  const [pickedPlaces, setPickedPlaces] = useState(storedPlaces);
 
   const [availablePlaces, setAvailablePlaces] = useState([])
 
@@ -52,6 +55,10 @@ function App() {
       prevPickedPlaces.filter((place) => place.id !== selectedPlace.current)
     );
     modal.current.close();
+
+    let storedIds = JSON.parse(localStorage.getItem('selectedPlaces')) || [];
+    storedIds = storedIds.filter((element) => { return element !== selectedPlace.current });
+    localStorage.setItem('selectedPlaces', JSON.stringify(storedIds));
   }
 
   return (
