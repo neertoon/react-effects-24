@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 
 import Places from './components/Places.jsx';
 import { AVAILABLE_PLACES } from './data.js';
@@ -14,12 +14,14 @@ function App() {
 
   const [availablePlaces, setAvailablePlaces] = useState([])
 
-  navigator.geolocation.getCurrentPosition((object) => {
-    console.log('To mamy');
-    const sortedPlaces = sortPlacesByDistance(AVAILABLE_PLACES, object.coords.latitude, object.coords.longitude);
-    console.log(sortedPlaces);
-    setAvailablePlaces(sortedPlaces);
-  });
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition((object) => {
+      console.log('To mamy');
+      const sortedPlaces = sortPlacesByDistance(AVAILABLE_PLACES, object.coords.latitude, object.coords.longitude);
+      console.log(sortedPlaces);
+      setAvailablePlaces(sortedPlaces);
+    });
+  }, []);
 
   function handleStartRemovePlace(id) {
     modal.current.open();
