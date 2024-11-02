@@ -13,6 +13,7 @@ function Modal({ children, open, onClose }) {
     }
   }, [open]);
 
+  //a pętla wywołana przez wstawnienie funkcji u nas nie dzieje się dzieki temu, że przez prop open wyłączamy dzieci
   return createPortal(
     <dialog className="modal" ref={dialog} onClose={onClose}>
       {open ? children : null}

@@ -11,7 +11,7 @@ export default function DeleteConfirmation({onConfirm, onCancel}) {
             //jeśli komponent jest przegenerowywany to odpal to:
             clearTimeout(timer);
         }
-    }, []);
+    }, [onConfirm]);//wstawienie funkcji może spowodować pętlę wywołań bo funkcja != funkcja
 
     return (
         <div id="delete-confirmation">
