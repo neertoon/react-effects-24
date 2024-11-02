@@ -8,6 +8,7 @@ export default function DeleteConfirmation({onConfirm, onCancel}) {
         }, 3000);
 
         return () => {
+            console.log('test');
             //jeśli komponent jest przegenerowywany to odpal to:
             clearTimeout(timer);
         }
